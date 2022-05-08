@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: loljoa-ingress
+  annotations:
+    kubernetes.io/ingress.class: istio
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/account/
+        pathType: Prefix
+        backend:
+          serviceName: account-api-svc
+          servicePort: 8080
+      - path: /api/betting/game/
+        pathType: Prefix
+        backend:
+          serviceName: betting-game-svc
+          servicePort: 8080
+      - path: /api/init/db/
+        pathType: Prefix
+        backend:
+          serviceName: db-init-svc
+          servicePort: 8080
+      - path: /api/league/
+        pathType: Prefix
+        backend:
+          serviceName: league-schedule-api-svc
+          servicePort: 8081
+      - path: /
+        pathType: Exact
+        backend:
+          serviceName: main-ui-svc
+          servicePort: 3000
+        

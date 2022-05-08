@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lck-schedule-crawler
+  namespace: loljoa
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: crawler 
+        image: loljoa/lck_schedule_crawler
+        env:
+        - name: ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: ACCESS_KEY_ID
+              optional: false
+        - name: SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: SECRET_ACCESS_KEY
+              optional: false 
+        - name: BUCKET_NAME
+          value: "loljoa2-bucket"
+        
+        - name: SELENIUM_SERVER_IP
+          valueFrom:
+            configMapKeyRef:
+              name: selenium-config
+              key: SELENIUM_SERVER_IP
+              optional: false
+        - name: CRAWLING_TARGET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: selenium-config
+              key: CRAWLING_TARGET_URL
+              optional: false
+      restartPolicy: OnFailure
+  backoffLimit: 4

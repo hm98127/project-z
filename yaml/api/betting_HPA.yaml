@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: betting-game-api
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: betting-game-api
+ minReplicas: 3
+ maxReplicas: 6
+ targetCPUUtilizationPercentage: 20

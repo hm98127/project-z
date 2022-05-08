@@ -1,0 +1,18 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  CRAWLING_TARGET_URL: https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season
+  SELENIUM_SERVER_IP: http://10.100.62.74:4444
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"CRAWLING_TARGET_URL":"https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season","SELENIUM_SERVER_IP":"http://10.100.62.74:4444"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"selenium-config","namespace":"loljoa"}}
+  creationTimestamp: "2022-04-13T04:24:45Z"
+  name: selenium-config
+  namespace: loljoa
+  resourceVersion: "184457"
+  uid: 2ef5709c-9709-4926-b21a-2341e3e2f7f6

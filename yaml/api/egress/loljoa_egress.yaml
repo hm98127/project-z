@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: mysql-external
+spec:
+  hosts:
+  - terraform-20220412142128253600000007.ccg52cmol7iq.ap-northeast-2.rds.amazonaws.com
+  addresses:
+  - 192.168.30.0/24
+  - 192.168.20.0/24
+  ports:
+  - name: tcp
+    number: 3306
+    protocol: TCP
+  exportTo:
+  - "*"
+  location: MESH_EXTERNAL
+  resolution: NONE
